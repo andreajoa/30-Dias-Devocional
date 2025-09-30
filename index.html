@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30 Dias de Oração Que Transformam | Devocional Completo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #ffd700;
+            --bg-dark: #0a0e27;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --text-light: #f0f0f0;
+            --accent-blue: #4a90e2;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #16213e 50%, #0f3460 100%);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* Partículas de Luz */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 215, 0, 0.6);
+            border-radius: 50%;
+            animation: float 20s infinite;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        /* Header Principal */
+        header {
+            position: relative;
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(180deg, rgba(255,215,0,0.1) 0%, transparent 100%);
+            z-index: 2;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        h1 {
+            font-size: 2.8em;
+            background: linear-gradient(135deg, #ffd700, #fff, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #b8b8d1;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        /* Navegação de Dias */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 15px 20px;
+            z-index: 100;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-days {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-gold) transparent;
+        }
+
+        .nav-days::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .nav-days::-webkit-scrollbar-thumb {
+            background: var(--primary-gold);
+            border-radius: 10px;
+        }
+
+        .day-btn {
+            min-width: 60px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+            white-space: nowrap;
+        }
+
+        .day-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .day-btn.active {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #0a0e27;
+            font-weight: bold;
+            border-color: var(--primary-gold);
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Card do Dia */
+        .day-content {
+            display: none;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .day-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Cabeçalho do Dia */
+        .day-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .day-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #0a0e27;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .day-title {
+            font-size: 2.5em;
+            color: var(--primary-gold);
+            margin-bottom: 10px;
+        }
+
+        .day-theme {
+            font-size: 1.2em;
+            color: #b8b8d1;
+            font-style: italic;
+        }
+
+        /* Card do Versículo */
+        .verse-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .verse-card::before {
+            content: '"';
+            position: absolute;
+            top: -30px;
+            left: 10px;
+            font-size: 120px;
+            color: rgba(255, 215, 0, 0.08);
+            font-family: Georgia, serif;
+        }
+
+        .verse-label {
+            color: var(--primary-gold);
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .verse-text {
+            font-size: 1.6em;
+            line-height: 1.6;
+            color: #ffffff;
+            font-style: italic;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .verse-reference {
+            text-align: right;
+            color: var(--primary-gold);
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        /* Reflexão */
+        .reflection {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid var(--primary-gold);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 30px;
+        }
+
+        .reflection h2 {
+            color: var(--primary-gold);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .reflection p {
+            font-size: 1.1em;
+            color: #e0e0e0;
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        /* Card de Oração */
+        .prayer-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 215, 0, 0.03));
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .prayer-card::before {
+            content: '🙏';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 45px;
+            opacity: 0.2;
+        }
+
+        .prayer-card h2 {
+            color: var(--primary-gold);
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+
+        .prayer-text {
+            font-size: 1.15em;
+            line-height: 1.9;
+            color: #f5f5f5;
+            font-style: italic;
+        }
+
+        .prayer-text strong {
+            color: var(--primary-gold);
+            font-style: normal;
+        }
+
+        /* Desafio do Dia */
+        .challenge {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .challenge h3 {
+            color: var(--primary-gold);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .challenge p {
+            font-size: 1.05em;
+            color: #e0e0e0;
+            line-height: 1.7;
+        }
+
+        /* Botões de Navegação */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Progresso */
+        .progress-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #ffed4e);
+            transition: width 0.5s ease;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .progress-text {
+            color: var(--primary-gold);
+            font-size: 1.1em;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 50px 20px 30px;
+            color: #b8b8d1;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .day-title { font-size: 1.8em; }
+            .verse-text { font-size: 1.3em; }
+            .verse-card, .reflection, .prayer-card, .challenge {
+                padding: 25px 20px;
+            }
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">✝️</div>
+        <h1>30 Dias de Oração Que Transformam</h1>
+        <p class="subtitle">Orações Poderosas para Sua Família, Fé e Futuro</p>
+    </header>
+
+    <!-- Navegação -->
+    <div class="nav-container">
+        <div class="nav-days" id="navDays"></div>
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Progresso -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p class="progress-text" id="progressText">Dia 1 de 30</p>
+        </div>
+
+        <!-- Conteúdo dos Dias -->
+        <div id="daysContainer"></div>
+
+        <!-- Botões de Navegação -->
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" onclick="changeDay(-1)">
+                ← Dia Anterior
+            </button>
+            <button class="nav-btn" id="nextBtn" onclick="changeDay(1)">
+                Próximo Dia →
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>📖 Que a Palavra de Deus ilumine seu caminho nestes 30 dias</p>
+        <p>Compartilhe esta jornada com alguém que precisa ouvir de Deus</p>
+        <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.7;">
+            © 2025 Devocional Diário | Transformando vidas através da Palavra
+        </p>
+    </footer>
+
+    <script>
+        // Dados dos 30 dias
+        const days = [
+            {
+                day: 1,
+                title: "Consagração Total",
+                theme: "Entregar Tudo a Deus",
+                verse: "Entrega o teu caminho ao Senhor; confia nele, e ele o fará.",
+                reference: "Salmos 37:5",
+                reflection: [
+                    "Você já tentou carregar o peso do mundo sozinho? Eu sei como é acordar com aquela ansiedade no peito, pensando em tudo que precisa resolver, nos problemas da família, nas contas, nos desafios que parecem impossíveis.",
+                    "Mas hoje Deus quer te lembrar de algo poderoso: Ele nunca te pediu para ser Deus. Ele te convidou para confiar Nele. Entregar não é desistir - é reconhecer que existe Alguém maior que você, mais sábio, mais forte, que já venceu todas as suas batalhas.",
+                    "Quando você entrega seu caminho ao Senhor, algo sobrenatural acontece. A paz que excede todo entendimento invade seu coração. As soluções começam a aparecer. As portas se abrem. Os milagres acontecem.",
+                    "Hoje, neste momento, Deus está te dizendo: 'Filho, pode descansar. Eu cuido de você. Eu cuido da sua família. Eu tenho um plano perfeito para sua vida.'"
+                ],
+                prayer: "Pai Celestial,\n\nHoje eu venho até Ti com um coração aberto. Reconheço que tentei fazer tudo sozinho e me cansei. Reconheço que Tu és Deus e eu não sou.\n\nNeste momento, eu entrego a Ti cada área da minha vida. Entrego minha família aos Teus cuidados. Entrego meus planos aos Teus propósitos. Entrego meus medos à Tua paz.\n\nSenhor, eu confio em Ti. Declaro que o Senhor tem o controle e que Teus planos são melhores que os meus. Eu escolho descansar em Ti e esperar em Teu agir.\n\nObrigado porque o Senhor nunca me abandona. Obrigado porque Tua fidelidade dura para sempre. Eu creio que farás o impossível acontecer na minha vida e na minha família.\n\nEm nome de Jesus, amém.",
+                challenge: "Escreva em um papel UMA coisa específica que você vai entregar a Deus hoje. Coloque esse papel dentro da sua Bíblia no Salmo 37:5. Toda vez que abrir sua Bíblia nessa passagem, lembre-se: 'Eu já entreguei isso a Deus. Ele está cuidando.'"
+            },
+            {
+                day: 2,
+                title: "Perdão e Libertação",
+                theme: "Quebrar Correntes do Passado",
+                verse: "Se confessarmos os nossos pecados, ele é fiel e justo para nos perdoar os pecados e nos purificar de toda injustiça.",
+                reference: "1 João 1:9",
+                reflection: [
+                    "Há quanto tempo você carrega aquele peso no coração? Aquela mágoa, aquela culpa, aquela raiva que não te deixa em paz? Hoje é o dia de soltar.",
+                    "O perdão não é um presente que você dá para quem te feriu - é um presente que você dá para si mesmo. Quando você perdoa, você não está dizendo que o que aconteceu foi certo. Você está dizendo: 'Eu escolho ser livre.'",
+                    "E sabe o que é mais poderoso? Quando você se perdoa. Quantos erros você ainda está pagando? Quantas vezes você já se condenou por algo que Deus já perdoou há muito tempo?",
+                    "A Bíblia diz que se confessarmos, Ele é FIEL para perdoar. Não 'talvez perdoe'. É FIEL. Isso significa que é impossível Deus não te perdoar quando você vem com coração sincero."
+                ],
+                prayer: "Senhor Jesus,\n\nEu venho hoje reconhecendo que preciso do Teu perdão. Confesso cada erro, cada falha, cada escolha errada. Eu sei que Tu conheces tudo, e mesmo assim me amas.\n\nEu recebo o Teu perdão agora. Declaro que sou livre de toda culpa, de toda condenação. O sangue de Jesus me purifica completamente.\n\nE neste momento, eu também perdoo. Perdoo quem me feriu, quem me traiu, quem me decepcionou. Eu soltei. Eu escolho ser livre.\n\nQuebre toda corrente do passado na minha vida. Que eu possa viver no presente com paz e caminhar para o futuro com esperança.\n\nEm nome de Jesus, amém.",
+                challenge: "Liste 3 pessoas (incluindo você mesmo) que você precisa perdoar. Ore por cada uma delas hoje, declarando em voz alta: 'Eu perdoo [nome]. Eu sou livre.'"
+            },
+            {
+                day: 3,
+                title: "Fé Renovada",
+                theme: "Crer no Impossível",
+                verse: "Jesus, porém, respondeu: O que é impossível aos homens é possível a Deus.",
+                reference: "Lucas 18:27",
+                reflection: [
+                    "Existe algo na sua vida que parece impossível? Uma cura que não vem, um relacionamento que parece sem conserto, uma dívida que não acaba, uma porta que não abre?",
+                    "A fé não é ignorar a realidade - é enxergar uma realidade maior. É olhar para o Mar Vermelho e ver um caminho. É olhar para gigantes e ver vitória. É olhar para túmulos e ver ressurreição.",
+                    "Deus se especializa em impossíveis. Aliás, quanto mais impossível, mais glória Ele recebe quando resolve. Porque ninguém vai poder dizer: 'Foi sorte' ou 'Foi esforço'. Todos saberão: FOI DEUS.",
+                    "Hoje, Deus está renovando sua fé. Ele está dizendo: 'Filho, você ainda não viu nada. O que Eu vou fazer na sua vida vai superar tudo que você imaginou.'"
+                ],
+                prayer: "Deus Todo-Poderoso,\n\nEu reconheço que Tu és o Deus do impossível. O mesmo Deus que abriu o Mar Vermelho, que derrubou muralhas, que ressuscitou Jesus, esse mesmo Deus está comigo agora.\n\nEu renovo minha fé hoje. Declaro que nada é impossível para Ti. A situação que parece sem saída, Tu tens a saída. O problema que parece sem solução, Tu és a solução.\n\nAumento minha fé, Senhor. Ajuda minha incredulidade. Que eu possa ver com os olhos da fé, não com os olhos naturais.\n\nEu creio que farás milagres na minha vida. Eu creio que o impossível vai acontecer. Eu creio que o melhor ainda está por vir.\n\nEm nome de Jesus, amém.",
+                challenge: "Escreva UMA situação impossível que você está enfrentando. Debaixo dela, escreva: 'MAS DEUS PODE'. Leia isso em voz alta 3 vezes ao dia durante esta semana."
+            }
+            // Adicione aqui os dias 4-30 com a mesma estrutura
+        ];
+
+        // Adicionar dias 4-30 (resumido para exemplo)
+        for(let i = 4; i <= 30; i++) {
+            days.push({
+                day: i,
+                title: `Oração do Dia ${i}`,
+                theme: `Tema do Dia ${i}`,
+                verse: "Pois eu bem sei os planos que tenho para vocês, diz o Senhor, planos de fazê-los prosperar e não de causar dano, planos de dar a vocês esperança e um futuro.",
+                reference: "Jeremias 29:11",
+                reflection: [
+                    `Esta é a reflexão profunda do dia ${i}. Deus tem algo especial para você hoje.`,
+                    "Cada dia é uma nova oportunidade de crescer na fé e experimentar o amor de Deus.",
+                    "Continue firme nesta jornada. Sua vida está sendo transformada dia após dia."
+                ],
+                prayer: `Pai Celestial,\n\nObrigado por este dia ${i} de oração. Continuo confiando em Ti e em Teus planos perfeitos para minha vida.\n\nTransforma-me, renova-me, usa-me para Tua glória.\n\nEm nome de Jesus, amém.`,
+                challenge: `Desafio prático do dia ${i}: Continue firme em oração e veja Deus agir!`
+            });
+        }
+
+        let currentDay = 0;
+
+        // Inicializar
+        function init() {
+            renderNavigation();
+            renderDays();
+            showDay(0);
+            createParticles();
+        }
+
+        // Renderizar navegação
+        function renderNavigation() {
+            const navDays = document.getElementById('navDays');
+            days.forEach((day, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'day-btn';
+                btn.textContent = `Dia ${day.day}`;
+                btn.onclick = () => showDay(index);
+                navDays.appendChild(btn);
+            });
+        }
+
+        // Renderizar todos os dias
+        function renderDays() {
+            const container = document.getElementById('daysContainer');
+            days.forEach((day, index) => {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'day-content';
+                dayDiv.id = `day-${index}`;
+                
+                dayDiv.innerHTML = `
+                    <div class="day-header">
+                        <span class="day-number">DIA ${day.day}</span>
+                        <h2 class="day-title">${day.title}</h2>
+                        <p class="day-theme">Tema: ${day.theme}</p>
+                    </div>
+
+                    <div class="verse-card">
+                        <span class="verse-label">📖 Versículo do Dia</span>
+                        <p class="verse-text">${day.verse}</p>
+                        <p class="verse-reference">— ${day.reference}</p>
+                    </div>
+
+                    <div class="reflection">
+                        <h2>✨ Reflexão para Hoje</h2>
+                        ${day.reflection.map(p => `<p>${p}</p>`).join('')}
+                    </div>
+
+                    <div class="prayer-card">
+                        <h2>🙏 Oração do Dia</h2>
+                        <p class="prayer-text">${day.prayer.split('\n').map(line => 
+                            line.trim().startsWith('Pai') || line.trim().startsWith('Senhor') || line.trim().startsWith('Deus') 
+                            ? `<strong>${line}</strong>` 
+                            : line
+                        ).join('<br><br>')}</p>
+                    </div>
+
+                    <div class="challenge">
+                        <h3>🎯 Desafio do Dia</h3>
+                        <p>${day.challenge}</p>
+                    </div>
+                `;
+                
+                container.appendChild(dayDiv);
+            });
+        }
+
+        // Mostrar dia específico
+        function showDay(index) {
+            // Remover classe active de todos
+            document.querySelectorAll('.day-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.day-btn').forEach(el => el.classList.remove('active'));
+            
+            // Adicionar classe active ao dia atual
+            document.getElementById(`day-${index}`).classList.add('active');
+            document.querySelectorAll('.day-btn')[index].classList.add('active');
+            
+            // Atualizar botões
+            currentDay = index;
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === days.length - 1;
+            
+            // Atualizar progresso
+            const progress = ((index + 1) / days.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Dia ${index + 1} de ${days.length}`;
+            
+            // Scroll para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Scroll na navegação para o dia ativo
+            const activeBtn = document.querySelectorAll('.day-btn')[index];
+            activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+
+        // Mudar dia
+        function changeDay(direction) {
+            const newDay = currentDay + direction;
+            if (newDay >= 0 && newDay < days.length) {
+                showDay(newDay);
+            }
+        }
+
+        // Criar partículas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Atalhos de teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeDay(-1);
+            if (e.key === 'ArrowRight') changeDay(1);
+        });
+
+        // Inicializar quando carregar
+        window.onload = init;
+    </script>
+</body>
+</html>
